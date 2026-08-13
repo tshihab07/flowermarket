@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sinorose - Premium imported rose</title>
+  <meta name="description" content="Explore beautiful flower information, care tips, meanings, and varieties at Anisa Flower." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <!-- Dedicated CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="logo">
+        <i class="fas fa-seedling"></i> Anisa<span>Flower</span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#collection" class="nav-link">Collection</a></li>
+        <li><a href="#care" class="nav-link">Flower Care</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="searchToggle" aria-label="Search flowers">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <span class="hero-badge">🌸 Fresh Flower Collection</span>
+        <h1>Discover the Beauty of Nature's Finest Flowers</h1>
+        <p>Explore detailed flower information, care tips, symbolic meanings, and varieties to bring nature closer to your life.</p>
+        
+        <div class="hero-buttons">
+          <a href="#collection" class="btn btn-primary">Explore Collection <i class="fas fa-arrow-right"></i></a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+
+        <div class="hero-search" id="heroSearch">
+          <input type="text" id="flowerSearch" placeholder="Search flowers... e.g. Rose, Tulip" autocomplete="off" />
+          <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="120">0+</span>
+          <span class="stat-label">Flower Species</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="500">0+</span>
+          <span class="stat-label">Happy Visitors</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="20">0+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="99">0%</span>
+          <span class="stat-label">Freshness Guarantee</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&auto=format&fit=crop&q=80" alt="Beautiful flower arrangement" />
+          <div class="about-experience">
+            <span>20+</span>
+            <p>Years of Flower Expertise</p>
+          </div>
+        </div>
+        <div class="about-content reveal">
+          <span class="section-subtitle">About Us</span>
+          <h2>Passionate About Flowers & Nature</h2>
+          <p>Anisa Flower is dedicated to providing accurate and inspiring flower information. From roses to rare orchids, we help you understand each bloom's unique characteristics, care requirements, and symbolic meanings.</p>
+          <div class="about-features">
+            <div class="feature">
+              <i class="fas fa-leaf"></i>
+              <div>
+                <h4>Expert Knowledge</h4>
+                <p>Curated by horticulturists and florists.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fas fa-heart"></i>
+              <div>
+                <h4>Symbolic Meanings</h4>
+                <p>Learn the language of flowers.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fas fa-tint"></i>
+              <div>
+                <h4>Care Tips</h4>
+                <p>Keep your flowers fresh longer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="collection section" id="collection">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Our Collection</span>
+          <h2>Explore Beautiful Flowers</h2>
+          <p>Filter by category or search for specific flower information.</p>
+        </div>
+
+        <div class="filter-buttons reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="rose">Rose</button>
+          <button class="filter-btn" data-filter="tulip">Tulip</button>
+          <button class="filter-btn" data-filter="orchid">Orchid</button>
+          <button class="filter-btn" data-filter="lily">Lily</button>
+          <button class="filter-btn" data-filter="sunflower">Sunflower</button>
+        </div>
+
+        <div class="flower-grid" id="flowerGrid">
+          <!-- Dynamic flower cards will be rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Care Tips Section -->
+    <section class="care section" id="care">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Flower Care Guide</span>
+          <h2>Essential Tips for Healthy Flowers</h2>
+          <p>Simple steps to keep your flowers vibrant and long-lasting.</p>
+        </div>
+
+        <div class="care-grid">
+          <div class="care-card reveal">
+            <div class="care-icon">
+              <i class="fas fa-tint"></i>
+            </div>
+            <h3>Proper Watering</h3>
+            <p>Change water every 2-3 days and trim stems at a 45° angle to maximize hydration and prevent bacteria growth.</p>
+          </div>
+          <div class="care-card reveal">
+            <div class="care-icon">
+              <i class="fas fa-sun"></i>
+            </div>
+            <h3>Sunlight Needs</h3>
+            <p>Most flowers thrive in bright, indirect light. Avoid direct afternoon sun to prevent wilting and petal damage.</p>
+          </div>
+          <div class="care-card reveal">
+            <div class="care-icon">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h3>Soil & Nutrition</h3>
+            <p>Use well-draining soil and add flower food to the water every few days to supply essential nutrients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">Testimonials</span>
+          <h2>What Flower Lovers Say</h2>
+        </div>
+        <div class="testimonial-slider reveal" id="testimonialSlider">
+          <div class="testimonial-item active">
+            <p>"Anisa Flower's detailed care guides helped me keep my orchids blooming for months. Truly invaluable!"</p>
+            <div class="testimonial-author">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Amelia" />
+              <div>
+                <h4>Amelia Rose</h4>
+                <span>Flower Enthusiast</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item">
+            <p>"I love the search feature! I found the meaning of every flower I wanted to give as a gift."</p>
+            <div class="testimonial-author">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Daniel" />
+              <div>
+                <h4>Daniel Lee</h4>
+                <span>Gift Shopper</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item">
+            <p>"The modern design and flower information are exactly what I needed for my botanical blog."</p>
+            <div class="testimonial-author">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sofia" />
+              <div>
+                <h4>Sofia Martinez</h4>
+                <span>Botanical Blogger</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots" id="testimonialDots"></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <span class="section-subtitle">Contact Us</span>
+          <h2>Have a Flower Question?</h2>
+          <p>Reach out to our team of flower experts. We're happy to help with any flower-related information.</p>
+          <div class="contact-details">
+            <div><i class="fas fa-map-marker-alt"></i><span>123 Garden Street, Floral City</span></div>
+            <div><i class="fas fa-phone"></i><span>+1 (555) 123-4567</span></div>
+            <div><i class="fas fa-envelope"></i><span>hello@anisaflower.com</span></div>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-row">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+          </div>
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <a href="#home" class="logo">
+          <i class="fas fa-seedling"></i> Anisa<span>Flower</span>
+        </a>
+        <p>Your trusted source for flower information, care tips, and symbolic meanings.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#collection">Collection</a></li>
+          <li><a href="#care">Flower Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Flower Categories</h4>
+        <ul>
+          <li><a href="#" data-filter-link="rose">Roses</a></li>
+          <li><a href="#" data-filter-link="tulip">Tulips</a></li>
+          <li><a href="#" data-filter-link="orchid">Orchids</a></li>
+          <li><a href="#" data-filter-link="lily">Lilies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Subscribe for flower tips and updates.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Anisa Flower. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flower Detail Modal -->
+  <div class="modal" id="flowerModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Dedicated JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anisa Flower - Fresh Flower Information & Shop</title>
+  <meta name="description" content="Explore beautiful flower information, care tips, meanings, and shop for your favorite blooms at Anisa Flower." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-500">
+    <div class="loader w-12 h-12 border-4 border-gray-200 border-t-[#15ac84] rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header id="header" class="fixed top-0 left-0 w-full z-[1000] py-4 transition-all duration-300">
+    <nav class="container mx-auto px-6 flex items-center justify-between">
+      <a href="#home" class="logo text-2xl font-bold text-white flex items-center gap-2">
+        <i class="fas fa-seedling text-[#15ac84]"></i> Anisa<span class="text-[#15ac84]">Flower</span>
+      </a>
+
+      <ul id="navMenu" class="hidden lg:flex items-center gap-8">
+        <li><a href="#home" class="nav-link text-white hover:text-[#15ac84] transition">Home</a></li>
+        <li><a href="#about" class="nav-link text-white hover:text-[#15ac84] transition">About</a></li>
+        <li><a href="#collection" class="nav-link text-white hover:text-[#15ac84] transition">Collection</a></li>
+        <li><a href="#care" class="nav-link text-white hover:text-[#15ac84] transition">Flower Care</a></li>
+        <li><a href="#contact" class="nav-link text-white hover:text-[#15ac84] transition">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <button id="searchToggle" class="icon-btn" aria-label="Search flowers">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero min-h-screen flex items-center relative bg-cover bg-center" style="background-image: url('images/red-rose.jpeg');">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#003527]/95 via-[#003527]/75 to-[#15ac84]/50"></div>
+      <div class="container mx-auto px-6 relative z-10 text-white max-w-3xl">
+        <span class="inline-block bg-white/15 backdrop-blur-md px-5 py-2 rounded-full text-sm font-medium mb-6 border border-white/25">🌸 Fresh Flower Collection</span>
+        <h1 class="text-5xl md:text-6xl font-bold mb-5 leading-tight" style="font-family: 'Playfair Display', serif;">Discover the Beauty of Nature's Finest Flowers</h1>
+        <p class="text-lg md:text-xl text-white/90 mb-8">Explore detailed flower information, care tips, symbolic meanings, and shop your favorite blooms.</p>
+        <div class="flex flex-wrap gap-4 mb-10">
+          <a href="#collection" class="btn btn-primary bg-[#15ac84] hover:bg-[#24b157] text-white px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2 transition transform hover:-translate-y-1">
+            Shop Collection <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#about" class="btn btn-outline border-2 border-white/70 text-white px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2 hover:bg-white hover:text-[#003527] transition transform hover:-translate-y-1">
+            Learn More
+          </a>
+        </div>
+        <div class="hero-search flex max-w-md bg-white rounded-full p-1.5 shadow-2xl">
+          <input type="text" id="flowerSearch" placeholder="Search flowers... e.g. Rose, Tulip" class="flex-1 border-none outline-none px-5 bg-transparent text-[#003527] text-sm" />
+          <button id="searchBtn" class="w-12 h-12 rounded-full bg-[#003527] text-white flex items-center justify-center hover:bg-[#15ac84] transition transform hover:scale-105">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-[#003527] py-10">
+      <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="stat-item reveal">
+          <span class="stat-number block text-4xl font-bold text-[#15ac84]" data-target="120">0+</span>
+          <span class="text-white/80 text-sm">Flower Species</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number block text-4xl font-bold text-[#15ac84]" data-target="500">0+</span>
+          <span class="text-white/80 text-sm">Happy Visitors</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number block text-4xl font-bold text-[#15ac84]" data-target="20">0+</span>
+          <span class="text-white/80 text-sm">Years Experience</span>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number block text-4xl font-bold text-[#15ac84]" data-target="99">0%</span>
+          <span class="text-white/80 text-sm">Freshness Guarantee</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div class="about-image relative rounded-2xl overflow-hidden shadow-2xl reveal">
+          <img src="images/purple-orchid.jpeg" alt="Beautiful flower arrangement" class="w-full h-[400px] object-cover" />
+          <div class="absolute bottom-4 right-4 bg-white px-5 py-3 rounded-lg shadow-lg text-center">
+            <span class="block text-2xl font-bold text-[#15ac84]">20+</span>
+            <p class="text-xs text-gray-600">Years of Expertise</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <span class="text-sm font-semibold tracking-widest uppercase text-[#15ac84]">About Us</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-[#003527] mt-2 mb-5" style="font-family: 'Playfair Display', serif;">Passionate About Flowers & Nature</h2>
+          <p class="text-gray-600 mb-8">Anisa Flower is dedicated to providing accurate and inspiring flower information. From roses to rare orchids, we help you understand each bloom's unique characteristics, care requirements, and symbolic meanings.</p>
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <i class="fas fa-leaf text-2xl text-[#15ac84]"></i>
+              <div>
+                <h4 class="font-semibold text-[#003527]">Expert Knowledge</h4>
+                <p class="text-gray-500 text-sm">Curated by horticulturists and florists.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <i class="fas fa-heart text-2xl text-[#15ac84]"></i>
+              <div>
+                <h4 class="font-semibold text-[#003527]">Symbolic Meanings</h4>
+                <p class="text-gray-500 text-sm">Learn the language of flowers.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <i class="fas fa-tint text-2xl text-[#15ac84]"></i>
+              <div>
+                <h4 class="font-semibold text-[#003527]">Care Tips</h4>
+                <p class="text-gray-500 text-sm">Keep your flowers fresh longer.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="collection" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-sm font-semibold tracking-widest uppercase text-[#15ac84]">Our Collection</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-[#003527] mt-2 mb-4" style="font-family: 'Playfair Display', serif;">Explore Beautiful Flowers</h2>
+          <p class="text-gray-600">Filter by category or search for specific flower information.</p>
+        </div>
+
+        <div class="filter-buttons flex flex-wrap justify-center gap-3 mb-10 reveal">
+          <button class="filter-btn active bg-[#003527] text-white px-5 py-2 rounded-full text-sm font-medium transition" data-filter="all">All</button>
+          <button class="filter-btn bg-white text-[#003527] px-5 py-2 rounded-full text-sm font-medium border border-gray-200 hover:bg-[#003527] hover:text-white transition" data-filter="rose">Rose</button>
+          <button class="filter-btn bg-white text-[#003527] px-5 py-2 rounded-full text-sm font-medium border border-gray-200 hover:bg-[#003527] hover:text-white transition" data-filter="tulip">Tulip</button>
+          <button class="filter-btn bg-white text-[#003527] px-5 py-2 rounded-full text-sm font-medium border border-gray-200 hover:bg-[#003527] hover:text-white transition" data-filter="orchid">Orchid</button>
+          <button class="filter-btn bg-white text-[#003527] px-5 py-2 rounded-full text-sm font-medium border border-gray-200 hover:bg-[#003527] hover:text-white transition" data-filter="lily">Lily</button>
+          <button class="filter-btn bg-white text-[#003527] px-5 py-2 rounded-full text-sm font-medium border border-gray-200 hover:bg-[#003527] hover:text-white transition" data-filter="sunflower">Sunflower</button>
+        </div>
+
+        <div id="flowerGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Dynamic cards will be rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Care Tips Section -->
+    <section id="care" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-sm font-semibold tracking-widest uppercase text-[#15ac84]">Flower Care Guide</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-[#003527] mt-2 mb-4" style="font-family: 'Playfair Display', serif;">Essential Tips for Healthy Flowers</h2>
+          <p class="text-gray-600">Simple steps to keep your flowers vibrant and long-lasting.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="care-card bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center reveal">
+            <div class="w-16 h-16 rounded-full bg-[#15ac84]/10 flex items-center justify-center mx-auto mb-5 text-2xl text-[#15ac84]">
+              <i class="fas fa-tint"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#003527] mb-3">Proper Watering</h3>
+            <p class="text-gray-600 text-sm">Change water every 2-3 days and trim stems at a 45° angle to maximize hydration and prevent bacteria growth.</p>
+          </div>
+          <div class="care-card bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center reveal">
+            <div class="w-16 h-16 rounded-full bg-[#15ac84]/10 flex items-center justify-center mx-auto mb-5 text-2xl text-[#15ac84]">
+              <i class="fas fa-sun"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#003527] mb-3">Sunlight Needs</h3>
+            <p class="text-gray-600 text-sm">Most flowers thrive in bright, indirect light. Avoid direct afternoon sun to prevent wilting and petal damage.</p>
+          </div>
+          <div class="care-card bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center reveal">
+            <div class="w-16 h-16 rounded-full bg-[#15ac84]/10 flex items-center justify-center mx-auto mb-5 text-2xl text-[#15ac84]">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h3 class="text-xl font-bold text-[#003527] mb-3">Soil & Nutrition</h3>
+            <p class="text-gray-600 text-sm">Use well-draining soil and add flower food to the water every few days to supply essential nutrients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-[#003527]">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <span class="text-sm font-semibold tracking-widest uppercase text-[#15ac84]">Testimonials</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mt-2" style="font-family: 'Playfair Display', serif;">What Flower Lovers Say</h2>
+        </div>
+        <div id="testimonialSlider" class="max-w-2xl mx-auto text-center relative min-h-[200px] reveal">
+          <div class="testimonial-item active">
+            <p class="text-lg italic text-white/90 leading-relaxed mb-6">"Anisa Flower's detailed care guides helped me keep my orchids blooming for months. Truly invaluable!"</p>
+            <div class="flex items-center justify-center gap-3">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Amelia" class="w-12 h-12 rounded-full object-cover border-2 border-[#15ac84]" />
+              <div class="text-left">
+                <h4 class="font-bold text-white">Amelia Rose</h4>
+                <span class="text-sm text-white/70">Flower Enthusiast</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item">
+            <p class="text-lg italic text-white/90 leading-relaxed mb-6">"I love the search feature! I found the meaning of every flower I wanted to give as a gift."</p>
+            <div class="flex items-center justify-center gap-3">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Daniel" class="w-12 h-12 rounded-full object-cover border-2 border-[#15ac84]" />
+              <div class="text-left">
+                <h4 class="font-bold text-white">Daniel Lee</h4>
+                <span class="text-sm text-white/70">Gift Shopper</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item">
+            <p class="text-lg italic text-white/90 leading-relaxed mb-6">"The modern design and flower information are exactly what I needed for my botanical blog."</p>
+            <div class="flex items-center justify-center gap-3">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sofia" class="w-12 h-12 rounded-full object-cover border-2 border-[#15ac84]" />
+              <div class="text-left">
+                <h4 class="font-bold text-white">Sofia Martinez</h4>
+                <span class="text-sm text-white/70">Botanical Blogger</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="testimonialDots" class="flex justify-center gap-2 mt-6"></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+        <div class="reveal">
+          <span class="text-sm font-semibold tracking-widest uppercase text-[#15ac84]">Contact Us</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-[#003527] mt-2 mb-4" style="font-family: 'Playfair Display', serif;">Have a Flower Question?</h2>
+          <p class="text-gray-600 mb-8">Reach out to our team of flower experts. We're happy to help with any flower-related information.</p>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3 text-gray-600">
+              <i class="fas fa-map-marker-alt w-10 h-10 rounded-full bg-[#15ac84]/10 text-[#15ac84] flex items-center justify-center"></i>
+              <span>123 Garden Street, Floral City</span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-600">
+              <i class="fas fa-phone w-10 h-10 rounded-full bg-[#15ac84]/10 text-[#15ac84] flex items-center justify-center"></i>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="flex items-center gap-3 text-gray-600">
+              <i class="fas fa-envelope w-10 h-10 rounded-full bg-[#15ac84]/10 text-[#15ac84] flex items-center justify-center"></i>
+              <span>hello@anisaflower.com</span>
+            </div>
+          </div>
+        </div>
+        <form id="contactForm" class="bg-white p-8 rounded-2xl shadow-lg reveal">
+          <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <input type="text" placeholder="Your Name" required class="w-full px-5 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+            <input type="email" placeholder="Your Email" required class="w-full px-5 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+          </div>
+          <textarea placeholder="Your Message" rows="5" required class="w-full px-5 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition mb-6"></textarea>
+          <button type="submit" class="w-full bg-[#15ac84] hover:bg-[#24b157] text-white font-semibold py-3 rounded-full transition transform hover:-translate-y-1 inline-flex items-center justify-center gap-2">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#003527] text-white pt-12">
+    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8 pb-10">
+      <div>
+        <a href="#home" class="text-2xl font-bold flex items-center gap-2 mb-4">
+          <i class="fas fa-seedling text-[#15ac84]"></i> Anisa<span class="text-[#15ac84]">Flower</span>
+        </a>
+        <p class="text-white/75 text-sm mb-5">Your trusted source for flower information, care tips, and symbolic meanings.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#15ac84] transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#15ac84] transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#15ac84] transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#15ac84] transition"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="text-white/75 hover:text-[#15ac84] transition">Home</a></li>
+          <li><a href="#about" class="text-white/75 hover:text-[#15ac84] transition">About</a></li>
+          <li><a href="#collection" class="text-white/75 hover:text-[#15ac84] transition">Collection</a></li>
+          <li><a href="#care" class="text-white/75 hover:text-[#15ac84] transition">Flower Care</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Flower Categories</h4>
+        <ul class="space-y-2">
+          <li><a href="#" data-filter-link="rose" class="text-white/75 hover:text-[#15ac84] transition">Roses</a></li>
+          <li><a href="#" data-filter-link="tulip" class="text-white/75 hover:text-[#15ac84] transition">Tulips</a></li>
+          <li><a href="#" data-filter-link="orchid" class="text-white/75 hover:text-[#15ac84] transition">Orchids</a></li>
+          <li><a href="#" data-filter-link="lily" class="text-white/75 hover:text-[#15ac84] transition">Lilies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+        <p class="text-white/75 text-sm mb-4">Subscribe for flower tips and updates.</p>
+        <form id="newsletterForm" class="flex bg-white/10 rounded-full p-1">
+          <input type="email" placeholder="Your email" required class="flex-1 bg-transparent border-none outline-none px-4 text-white placeholder-white/60" />
+          <button type="submit" class="w-10 h-10 rounded-full bg-[#15ac84] text-white flex items-center justify-center hover:bg-[#24b157] transition"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-white/10 py-5 text-center text-white/60 text-sm">
+      <p>&copy; 2026 Anisa Flower. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Flower Detail Modal -->
+  <div class="modal" id="flowerModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be rendered here -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal:</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <button class="btn btn-primary cart-checkout-btn" id="checkoutBtn">
+        Proceed to Checkout <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-overlay" id="checkoutOverlay"></div>
+    <div class="checkout-content">
+      <button class="checkout-close" id="checkoutClose" aria-label="Close checkout">
+        <i class="fas fa-times"></i>
+      </button>
+      <form class="checkout-form" id="checkoutForm">
+        <h2>Checkout</h2>
+        
+        <!-- Shipping Information -->
+        <div>
+          <h3>Shipping Information</h3>
+          <div class="form-row">
+            <input type="text" placeholder="First Name" required />
+            <input type="text" placeholder="Last Name" required />
+          </div>
+          <input type="email" placeholder="Email Address" required />
+          <input type="text" placeholder="Address" required />
+          <div class="form-row">
+            <input type="text" placeholder="City" required />
+            <input type="text" placeholder="ZIP Code" required />
+          </div>
+        </div>
+        
+        <!-- Payment Method -->
+        <div>
+          <h3>Payment Method</h3>
+          <div class="payment-methods">
+            <label>
+              <input type="radio" name="payment" value="card" checked />
+              <i class="far fa-credit-card"></i> Credit Card
+            </label>
+            <label>
+              <input type="radio" name="payment" value="paypal" />
+              <i class="fab fa-paypal"></i> PayPal
+            </label>
+          </div>
+          <div class="card-fields" id="cardFields">
+            <input type="text" placeholder="Card Number" />
+            <input type="text" placeholder="MM/YY" />
+            <input type="text" placeholder="CVC" />
+          </div>
+        </div>
+        
+        <!-- Order Summary -->
+        <div>
+          <h3>Order Summary</h3>
+          <div class="checkout-summary" id="checkoutSummary"></div>
+          <div class="checkout-total">
+            <span>Total:</span>
+            <span id="checkoutTotal">$0.00</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary checkout-submit">
+          Place Order <i class="fas fa-check"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Cart Toggle Button (Bottom Right) -->
+  <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount">0</span>
+  </button>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Custom JS -->
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

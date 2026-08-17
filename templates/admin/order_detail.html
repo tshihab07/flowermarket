@@ -1,0 +1,161 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block page_title %}Order #{{ order.pk }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Order #{{ order.pk }}</h2>
+            <a href="{% url 'app:admin_orders' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Orders
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Order Info -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Order Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Customer</label>
+                    <p class="mb-0 fw-bold">{{ order.customer_name }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Phone</label>
+                    <p class="mb-0">{{ order.phone }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Address</label>
+                    <p class="mb-0">{{ order.address }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Delivery Option</label>
+                    <p class="mb-0">{{ order.delivery_option }}</p>
+                </div>
+                {% if order.delivery_note %}
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Delivery Note</label>
+                    <p class="mb-0">{{ order.delivery_note }}</p>
+                </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Payment Method</label>
+                    <p class="mb-0">{{ order.payment_method }}</p>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Total</label>
+                    <p class="mb-0 fw-bold fs-5 text-success">৳{{ order.total|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Updates -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Update Status</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_status" class="form-label">Delivery Status</label>
+                        <select name="status" id="id_status" class="form-select">
+                            {% for value, label in status_choices %}
+                                <option value="{{ value }}" {% if value == order.status %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_payment_status" class="form-label">Payment Status</label>
+                        <select name="payment_status" id="id_payment_status" class="form-select">
+                            {% for value, label in payment_status_choices %}
+                                <option value="{{ value }}" {% if value == order.payment_status %}selected{% endif %}>{{ label|title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-save"></i> Update Status
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">Current Status</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Delivery</span>
+                    <span class="badge bg-{% if order.status == 'Delivered' %}success{% elif order.status == 'Processing' %}warning{% elif order.status == 'Cancelled' %}danger{% else %}secondary{% endif %} fs-6">
+                        {{ order.status }}
+                    </span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Payment</span>
+                    <span class="badge bg-{% if order.payment_status == 'paid' %}success{% else %}warning{% endif %} fs-6">
+                        {{ order.payment_status|title }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Order Items</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.items.all %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        {% if item.product.image %}
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" class="me-2">
+                                        {% endif %}
+                                        {{ item.product.name }}
+                                    </div>
+                                </td>
+                                <td>{{ item.quantity }}</td>
+                                <td>৳{{ item.price|floatformat:2|intcomma }}</td>
+                                <td class="fw-bold">৳{{ item.get_subtotal|floatformat:2|intcomma }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <th colspan="3" class="text-end">Total</th>
+                                <th class="fw-bold">৳{{ order.total|floatformat:2|intcomma }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

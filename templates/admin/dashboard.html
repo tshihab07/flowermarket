@@ -1,0 +1,118 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block page_title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Admin Dashboard</h2>
+            <span class="text-muted">{{ today|date:"d M, Y" }}</span>
+        </div>
+    </div>
+</div>
+
+<!-- Stat Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card border-primary">
+            <div class="stat-icon bg-primary-light">
+                <i class="fas fa-users text-primary"></i>
+            </div>
+            <div class="stat-info">
+                <h3 class="stat-value">{{ total_customers|intcomma }}</h3>
+                <p class="stat-label">Total Customers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card border-success">
+            <div class="stat-icon bg-success-light">
+                <i class="fas fa-shopping-cart text-success"></i>
+            </div>
+            <div class="stat-info">
+                <h3 class="stat-value">{{ total_orders|intcomma }}</h3>
+                <p class="stat-label">Total Orders</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card border-warning">
+            <div class="stat-icon bg-warning-light">
+                <i class="fas fa-box text-warning"></i>
+            </div>
+            <div class="stat-info">
+                <h3 class="stat-value">{{ total_sell|intcomma }}</h3>
+                <p class="stat-label">Total Sell (Items)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card border-info">
+            <div class="stat-icon bg-info-light">
+                <i class="fas fa-money-bill-wave text-info"></i>
+            </div>
+            <div class="stat-info">
+                <h3 class="stat-value">৳{{ total_earning|floatformat:2|intcomma }}</h3>
+                <p class="stat-label">Total Earning</p>
+                <small class="text-muted">Collected (Paid): ৳{{ collected_paid|floatformat:2|intcomma }}</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Orders -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Recent Orders</h5>
+        <a href="{% url 'app:admin_orders' %}" class="btn btn-sm btn-outline-primary">View All</a>
+    </div>
+    <div class="card-body p-0">
+        {% if recent_orders %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#ID</th>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Total</th>
+                        <th>Delivery</th>
+                        <th>Payment</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in recent_orders %}
+                    <tr>
+                        <td><a href="{% url 'app:admin_order_detail' order.pk %}" class="text-decoration-none fw-bold">#{{ order.pk }}</a></td>
+                        <td>{{ order.customer_name }}</td>
+                        <td>{{ order.phone }}</td>
+                        <td class="fw-bold">৳{{ order.total|floatformat:2|intcomma }}</td>
+                        <td>
+                            <span class="badge bg-{% if order.status == 'Delivered' %}success{% elif order.status == 'Processing' %}warning{% elif order.status == 'Cancelled' %}danger{% else %}secondary{% endif %}">
+                                {{ order.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-{% if order.payment_status == 'paid' %}success{% else %}warning{% endif %}">
+                                {{ order.payment_status|title }}
+                            </span>
+                        </td>
+                        <td>{{ order.created_at|date:"d M, Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+            <p class="text-muted">No orders yet.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

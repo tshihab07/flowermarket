@@ -22,10 +22,11 @@ from app import views
 
 urlpatterns = [
     path('', views.home, name='frontend_home'),
+    path('api/products/', views.api_products, name='api_products'),
     path('django-admin/', admin.site.urls),
     path('admin/', include('app.urls', namespace='app')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

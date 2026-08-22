@@ -27,6 +27,16 @@
   <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-500">
     <div class="loader w-12 h-12 border-4 border-gray-200 border-t-[#15ac84] rounded-full animate-spin"></div>
   </div>
+  <script>
+    window.addEventListener('load', function() {
+      var p = document.getElementById('preloader');
+      if (p) { p.style.opacity = '0'; p.style.pointerEvents = 'none'; setTimeout(function(){ p.remove(); }, 500); }
+    });
+    setTimeout(function() {
+      var p = document.getElementById('preloader');
+      if (p) { p.style.opacity = '0'; p.style.pointerEvents = 'none'; setTimeout(function(){ p.remove(); }, 500); }
+    }, 4000);
+  </script>
 
   <!-- Header / Navigation -->
   <header id="header" class="fixed top-0 left-0 w-full z-[1000] py-4 transition-all duration-300">
@@ -44,10 +54,10 @@
       </ul>
 
       <div class="flex items-center gap-3">
-        <button id="searchToggle" class="icon-btn" aria-label="Search flowers">
+        <button id="searchToggle" class="icon-btn w-10 h-10 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-[#15ac84] transition">
           <i class="fas fa-search"></i>
         </button>
-        <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">
+        <button id="navToggle" class="lg:hidden w-10 h-10 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-[#15ac84] transition">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -322,123 +332,117 @@
       </div>
     </div>
     <div class="border-t border-white/10 py-5 text-center text-white/60 text-sm">
-      <p>&copy; 2026 <a href="tusharshihab.vercel.app" target="_blank">Tushar Shihab</a>, AI / ML Engineer. All rights reserved.</p>
+      <p>&copy; 2026 Anisa Flower. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- Flower Detail Modal -->
-  <div class="modal" id="flowerModal">
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="Close modal">
+  <div id="flowerModal" class="fixed inset-0 z-[2000] flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <div id="modalOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="relative z-10 bg-white rounded-2xl max-w-2xl w-[90%] max-h-[90vh] overflow-y-auto shadow-2xl">
+      <button id="modalClose" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white text-[#003527] shadow-md flex items-center justify-center hover:bg-[#003527] hover:text-white transition z-10">
         <i class="fas fa-times"></i>
       </button>
-      <div class="modal-body" id="modalBody">
-        <!-- Dynamic content -->
-      </div>
+      <div id="modalBody" class="grid md:grid-cols-2"></div>
     </div>
   </div>
 
   <!-- Cart Sidebar -->
-  <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h3>Your Cart</h3>
-      <button class="cart-close" id="cartClose" aria-label="Close cart">
+  <div id="cartSidebar" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white z-[3000] shadow-2xl transform translate-x-full transition-transform duration-300">
+    <div class="flex items-center justify-between p-5 border-b border-gray-100">
+      <h3 class="text-xl font-bold text-[#003527]">Your Cart</h3>
+      <button id="cartClose" class="w-10 h-10 rounded-full bg-gray-100 text-[#003527] flex items-center justify-center hover:bg-[#003527] hover:text-white transition">
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <div class="cart-items" id="cartItems">
+    <div id="cartItems" class="p-5 overflow-y-auto max-h-[calc(100vh-200px)]">
       <!-- Cart items will be rendered here -->
     </div>
-    <div class="cart-footer">
-      <div class="cart-subtotal">
-        <span>Subtotal:</span>
-        <span id="cartSubtotal">$0.00</span>
+    <div class="p-5 border-t border-gray-100">
+      <div class="flex justify-between mb-4">
+        <span class="text-gray-600">Subtotal:</span>
+        <span id="cartSubtotal" class="font-bold text-[#003527]">$0.00</span>
       </div>
-      <button class="btn btn-primary cart-checkout-btn" id="checkoutBtn">
-        Proceed to Checkout <i class="fas fa-arrow-right"></i>
+      <button id="checkoutBtn" class="w-full bg-[#15ac84] hover:bg-[#24b157] text-white font-semibold py-3 rounded-full transition transform hover:-translate-y-1">
+        Proceed to Checkout <i class="fas fa-arrow-right ml-1"></i>
       </button>
     </div>
   </div>
-  <div class="cart-overlay" id="cartOverlay"></div>
+  <div id="cartOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[2500] opacity-0 invisible transition-all duration-300"></div>
 
   <!-- Checkout Modal -->
-  <div class="checkout-modal" id="checkoutModal">
-    <div class="checkout-overlay" id="checkoutOverlay"></div>
-    <div class="checkout-content">
-      <button class="checkout-close" id="checkoutClose" aria-label="Close checkout">
+  <div id="checkoutModal" class="fixed inset-0 z-[4000] flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <div id="checkoutOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="relative z-10 bg-white rounded-2xl max-w-2xl w-[95%] max-h-[90vh] overflow-y-auto shadow-2xl">
+      <button id="checkoutClose" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white text-[#003527] shadow-md flex items-center justify-center hover:bg-[#003527] hover:text-white transition z-10">
         <i class="fas fa-times"></i>
       </button>
-      <form class="checkout-form" id="checkoutForm">
-        <h2>Checkout</h2>
-        
-        <!-- Shipping Information -->
-        <div>
-          <h3>Shipping Information</h3>
-          <div class="form-row">
-            <input type="text" placeholder="First Name" required />
-            <input type="text" placeholder="Last Name" required />
+      <div class="p-6 md:p-8">
+        <h2 class="text-2xl font-bold text-[#003527] mb-6">Checkout</h2>
+        <form id="checkoutForm">
+          <!-- Shipping Information -->
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-[#003527] mb-3">Shipping Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" placeholder="First Name" required class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+              <input type="text" placeholder="Last Name" required class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+              <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition md:col-span-2" />
+              <input type="text" placeholder="Address" required class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition md:col-span-2" />
+              <input type="text" placeholder="City" required class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+              <input type="text" placeholder="ZIP Code" required class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+            </div>
           </div>
-          <input type="email" placeholder="Email Address" required />
-          <input type="text" placeholder="Address" required />
-          <div class="form-row">
-            <input type="text" placeholder="City" required />
-            <input type="text" placeholder="ZIP Code" required />
+          <!-- Payment Method -->
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-[#003527] mb-3">Payment Method</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <label class="flex items-center gap-2 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-[#15ac84] transition">
+                <input type="radio" name="payment" value="card" checked class="accent-[#15ac84]" />
+                <i class="far fa-credit-card text-[#15ac84]"></i> Credit Card
+              </label>
+              <label class="flex items-center gap-2 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-[#15ac84] transition">
+                <input type="radio" name="payment" value="paypal" class="accent-[#15ac84]" />
+                <i class="fab fa-paypal text-[#15ac84]"></i> PayPal
+              </label>
+            </div>
+            <div id="cardFields" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" placeholder="Card Number" class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition md:col-span-2" />
+              <input type="text" placeholder="MM/YY" class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+              <input type="text" placeholder="CVC" class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:border-[#15ac84] focus:ring-4 focus:ring-[#15ac84]/10 transition" />
+            </div>
           </div>
-        </div>
-        
-        <!-- Payment Method -->
-        <div>
-          <h3>Payment Method</h3>
-          <div class="payment-methods">
-            <label>
-              <input type="radio" name="payment" value="card" checked />
-              <i class="far fa-credit-card"></i> Credit Card
-            </label>
-            <label>
-              <input type="radio" name="payment" value="paypal" />
-              <i class="fab fa-paypal"></i> PayPal
-            </label>
+          <!-- Order Summary -->
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-[#003527] mb-3">Order Summary</h3>
+            <div id="checkoutSummary" class="space-y-2"></div>
+            <div class="border-t border-gray-100 pt-3 mt-3 flex justify-between font-bold text-[#003527]">
+              <span>Total:</span>
+              <span id="checkoutTotal">$0.00</span>
+            </div>
           </div>
-          <div class="card-fields" id="cardFields">
-            <input type="text" placeholder="Card Number" />
-            <input type="text" placeholder="MM/YY" />
-            <input type="text" placeholder="CVC" />
-          </div>
-        </div>
-        
-        <!-- Order Summary -->
-        <div>
-          <h3>Order Summary</h3>
-          <div class="checkout-summary" id="checkoutSummary"></div>
-          <div class="checkout-total">
-            <span>Total:</span>
-            <span id="checkoutTotal">$0.00</span>
-          </div>
-        </div>
-        
-        <button type="submit" class="btn btn-primary checkout-submit">
-          Place Order <i class="fas fa-check"></i>
-        </button>
-      </form>
+          <button type="submit" class="w-full bg-[#15ac84] hover:bg-[#24b157] text-white font-semibold py-3 rounded-full transition transform hover:-translate-y-1">
+            Place Order <i class="fas fa-check ml-1"></i>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- Cart Toggle Button (Bottom Right) -->
-  <button class="cart-toggle" id="cartToggle" aria-label="Open cart">
-    <i class="fas fa-shopping-cart"></i>
-    <span id="cartCount">0</span>
-  </button>
-
   <!-- Back to Top Button -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <button id="backToTop" class="fixed bottom-20 right-5 w-11 h-11 rounded-full bg-[#003527] text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-[#15ac84] z-[900]">
     <i class="fas fa-chevron-up"></i>
   </button>
 
+  <!-- Floating Cart Button -->
+  <button id="cartToggle" class="fixed bottom-5 right-5 w-12 h-12 rounded-full bg-[#15ac84] text-white shadow-lg flex items-center justify-center hover:bg-[#24b157] transition z-[1000]">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount" class="absolute -top-1 -right-1 bg-[#003527] text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+  </button>
+
   <!-- Toast Notification -->
-  <div class="toast" id="toast"></div>
+  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 translate-y-24 bg-[#003527] text-white px-6 py-3 rounded-full font-medium shadow-xl opacity-0 transition-all duration-300 z-[5000]"></div>
 
   <!-- Custom JS -->
-  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/script.js'}"></script>
 </body>
 </html>
